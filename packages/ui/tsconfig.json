@@ -1,8 +1,13 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
+  "extends": "@nzc/tsconfig/internal-package.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "jsx": "preserve",
+    "rootDir": ".",
+    "paths": {
+      "@nzc/ui/*": ["./src/*"]
+    }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules"]
 }
