@@ -2,18 +2,46 @@
   "name": "next-zen-commerce",
   "private": true,
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "build": "turbo run build",
+    "clean": "git clean -xdf node_modules",
+    "clean:workspaces": "turbo run clean",
+    "db:push": "turbo -F @nzc/db push",
+    "db:studio": "turbo -F @nzc/db studio",
+    "dev": "turbo dev --continue",
+    "dev:app": "turbo watch dev -F @nzc/app...",
+    "dev:core": "turbo watch dev -F @nzc/core...",
+    "dev:store": "turbo watch dev -F @nzc/store...",
+    "format": "turbo run format --continue -- --cache --cache-location .cache/.prettiercache",
+    "format:fix": "turbo run format --continue -- --write --cache --cache-location .cache/.prettiercache",
+    "lint": "turbo run lint --continue -- --cache --cache-location .cache/.eslintcache",
+    "lint-staged": "lint-staged",
+    "lint:fix": "turbo run lint --continue -- --fix --cache --cache-location .cache/.eslintcache",
+    "prepare": "husky",
+    "typecheck": "turbo run typecheck",
+    "ui:add": "turbo run ui:add"
   },
+  "lint-staged": {
+    "**/package.json": "sort-package-json",
+    "*.{md,mdx,yml,json}": "prettier --write",
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --cache --fix"
+    ]
+  },
+  "prettier": "@nzc/prettier-config",
   "devDependencies": {
-    "prettier": "^3.2.5",
+    "@nzc/prettier-config": "workspace:*",
+    "eslint": "catalog:",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
+    "prettier": "catalog:",
+    "sort-package-json": "^2.12.0",
     "turbo": "^2.3.3",
-    "typescript": "5.5.4"
+    "typescript": "catalog:"
   },
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@9.15.1",
   "engines": {
-    "node": ">=18"
+    "bun": ">=1.1.14",
+    "node": ">=20.18.1"
   }
 }
