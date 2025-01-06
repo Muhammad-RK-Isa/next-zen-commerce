@@ -1,0 +1,39 @@
+{
+  "name": "@nzc/app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "pnpm with-env next build",
+    "clean": "git clean -xdf .cache .next .turbo node_modules",
+    "dev": "pnpm with-env next dev --turbopack",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "start": "pnpm with-env next start",
+    "typecheck": "tsc --noEmit",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "prettier": "@nzc/prettier-config",
+  "dependencies": {
+    "@hookform/resolvers": "catalog:",
+    "@nzc/ui": "workspace:^",
+    "lucide-react": "^0.469.0",
+    "next": "catalog:",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19",
+    "react-hook-form": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nzc/eslint-config": "workspace:^",
+    "@nzc/prettier-config": "workspace:^",
+    "@nzc/tailwind-config": "workspace:^",
+    "@nzc/tsconfig": "workspace:^",
+    "@types/node": "^20.17.11",
+    "@types/react": "catalog:react19",
+    "@types/react-dom": "catalog:react19",
+    "dotenv-cli": "catalog:",
+    "eslint": "catalog:",
+    "postcss": "catalog:",
+    "typescript": "catalog:"
+  }
+}
