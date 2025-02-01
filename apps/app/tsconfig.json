@@ -1,11 +1,26 @@
 {
-  "extends": "@nzc/tsconfig/nextjs.json",
+  "extends": "@nzc/tsconfig/base.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "lib": ["ES2022", "dom", "dom.iterable"],
+    "module": "esnext",
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
       "~/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    ".",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
