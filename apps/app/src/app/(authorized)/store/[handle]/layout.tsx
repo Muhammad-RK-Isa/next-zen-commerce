@@ -6,7 +6,7 @@ import { HydrationBoundary } from "@tanstack/react-query";
 import { SidebarProvider } from "@nzc/ui/components/sidebar";
 
 import { AppSidebar } from "~/components/sidebar";
-import { trpcServerUtils } from "~/trpc/server";
+import { api, trpcServerUtils } from "~/trpc/server";
 
 interface StoreHandleLayoutProps {
   children: React.ReactNode;
@@ -23,7 +23,7 @@ export default async function StoreLayout({
   const pathname = (await headers()).get("x-path") ?? "/";
 
   if (handle !== "create") {
-    const store = await trpcServerUtils.store.getByHandle.fetch(handle);
+    const store = await api.store.getByHandle.query(handle);
 
     if (!store) {
       return notFound();
