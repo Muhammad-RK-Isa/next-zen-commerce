@@ -1,0 +1,44 @@
+{
+  "name": "@nzc/email",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./templates": {
+      "types": "./dist/templates/index.d.ts",
+      "default": "./src/templates/index.tsx"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "pnpm with-env email dev --dir=src/templates --port=7001",
+    "export": "pnpm with-env email export",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "prettier": "@nzc/prettier-config",
+  "dependencies": {
+    "@nzc/env": "workspace:*",
+    "@react-email/components": "^0.0.32",
+    "nodemailer": "^6.9.16",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19"
+  },
+  "devDependencies": {
+    "@nzc/eslint-config": "workspace:*",
+    "@nzc/prettier-config": "workspace:*",
+    "@nzc/tsconfig": "workspace:*",
+    "@types/nodemailer": "^6.4.17",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "react-email": "^3.0.5",
+    "typescript": "catalog:"
+  }
+}
