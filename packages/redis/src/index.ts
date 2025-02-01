@@ -1,23 +1,7 @@
-import type { RedisClientType } from "redis";
-import { createClient } from "redis";
+import Redis from "ioredis";
 
-import { env } from "@nzc/env";
-
-const globalForRedis = globalThis as unknown as {
-  redisClient: RedisClientType | undefined;
-};
-
-const redisClient =
-  globalForRedis.redisClient ??
-  createClient({
-    url: env.REDIS_URL,
-  });
-
-if (!globalForRedis.redisClient) {
-  await redisClient
-    .connect()
-    .then(() => console.log("🍎 Redis client is connected! 🚀"));
-  if (env.NODE_ENV !== "production") globalForRedis.redisClient = redisClient;
-}
+const redisClient = new Redis(
+  "redis://default:oQpPmeFDN2kYBKlkLhqDWPoAy10gpHNL@redis-10055.c252.ap-southeast-1-1.ec2.redns.redis-cloud.com:10055",
+);
 
 export const redis = redisClient;

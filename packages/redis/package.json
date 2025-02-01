@@ -20,7 +20,7 @@
   "prettier": "@nzc/prettier-config",
   "dependencies": {
     "@nzc/env": "workspace:*",
-    "redis": "^4.7.0"
+    "ioredis": "^5.4.2"
   },
   "devDependencies": {
     "@nzc/eslint-config": "workspace:*",
