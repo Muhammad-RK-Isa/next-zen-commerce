@@ -1,0 +1,47 @@
+{
+  "name": "@nzc/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./app": {
+      "types": "./dist/app/index.d.ts",
+      "default": "./src/app/index.ts"
+    },
+    "./store": {
+      "types": "./dist/store/index.d.ts",
+      "default": "./src/store/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "prettier": "@nzc/prettier-config",
+  "dependencies": {
+    "@nzc/auth": "workspace:*",
+    "@nzc/db": "workspace:*",
+    "@nzc/email": "workspace:^",
+    "@nzc/env": "workspace:*",
+    "@nzc/redis": "workspace:*",
+    "@nzc/security": "workspace:^",
+    "@nzc/validators": "workspace:*",
+    "@trpc/server": "11.0.0-rc.688",
+    "superjson": "catalog:",
+    "trpc-to-openapi": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nzc/eslint-config": "workspace:^",
+    "@nzc/prettier-config": "workspace:^",
+    "@nzc/tsconfig": "workspace:^",
+    "@types/bun": "catalog:",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  }
+}
