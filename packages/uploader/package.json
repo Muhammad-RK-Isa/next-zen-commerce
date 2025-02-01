@@ -1,0 +1,49 @@
+{
+  "name": "@nzc/uploader",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./use-upload-file": {
+      "types": "./dist/use-upload-file.d.ts",
+      "default": "./src/use-upload-file.ts"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "default": "./src/client.ts"
+    },
+    "./utils": {
+      "types": "./dist/utils.d.ts",
+      "default": "./src/utils.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "prettier": "@nzc/prettier-config",
+  "dependencies": {
+    "@nzc/auth": "workspace:*",
+    "@nzc/db": "workspace:*",
+    "@nzc/env": "workspace:*",
+    "@nzc/validators": "workspace:^",
+    "uploadthing": "^7.4.4",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nzc/eslint-config": "workspace:*",
+    "@nzc/prettier-config": "workspace:*",
+    "@nzc/tsconfig": "workspace:*",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  }
+}
