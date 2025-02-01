@@ -8,6 +8,8 @@ import {
 
 import { trpcServerUtils } from "~/trpc/server";
 
+export const dynamic = "force-dynamic";
+
 export default async function AccountPage() {
   const { user } = await trpcServerUtils.auth.session.fetch();
   return (

@@ -10,6 +10,8 @@ import {
 import { api } from "~/trpc/server";
 import { StoreCreateForm } from "./_components/store-create-form";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Create store",
   description: "Create a store to sell your products",

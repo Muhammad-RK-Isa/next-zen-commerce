@@ -2,6 +2,8 @@ import { redirect } from "next/navigation";
 
 import { trpcServerUtils } from "~/trpc/server";
 
+export const dynamic = "force-dynamic";
+
 export default async function StorePage() {
   const stores = await trpcServerUtils.store.listStores.fetch();
 

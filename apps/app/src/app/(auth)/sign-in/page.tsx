@@ -8,6 +8,8 @@ import type { SearchParams } from "~/lib/types";
 import { APP_TITLE } from "~/lib/constants";
 import { SignInForm } from "./_components/sign-in-form";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: `Sign In - ${APP_TITLE}`,
   description: `Sign in to continue to ${APP_TITLE}`,
