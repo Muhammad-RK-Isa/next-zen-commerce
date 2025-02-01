@@ -21,7 +21,7 @@ export default async function () {
   const title = hasStore ? "Create a new store" : "Create your first store";
 
   return (
-    <main className="w-ful relative flex min-h-screen items-center justify-center bg-background bg-grid-black/[0.2] dark:bg-grid-white/[0.2]">
+    <main className="w-ful relative flex min-h-screen items-center justify-center bg-background bg-grid-small-black/[0.2] dark:bg-grid-small-white/[0.2]">
       {/* Radial gradient for the container to give a faded look */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       <Card className="z-10 w-[24rem]">
