@@ -1,7 +1,7 @@
 import Redis from "ioredis";
 
-const redisClient = new Redis(
-  "redis://default:oQpPmeFDN2kYBKlkLhqDWPoAy10gpHNL@redis-10055.c252.ap-southeast-1-1.ec2.redns.redis-cloud.com:10055",
-);
+import { env } from "@nzc/env";
+
+const redisClient = new Redis(env.REDIS_URL);
 
 export const redis = redisClient;
