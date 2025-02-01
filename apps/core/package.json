@@ -1,0 +1,31 @@
+{
+  "name": "@nzc/core",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "pnpm with-env bun build src/index.ts --outdir ./dist --target bun",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "pnpm with-env bun run --hot src/index.ts",
+    "start": "pnpm with-env bun run dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "prettier": "@nzc/prettier-config",
+  "dependencies": {
+    "@hono/trpc-server": "^0.3.4",
+    "@nzc/api": "workspace:*",
+    "@nzc/auth": "workspace:*",
+    "@nzc/env": "workspace:*",
+    "hono": "^4.6.16"
+  },
+  "devDependencies": {
+    "@nzc/eslint-config": "workspace:*",
+    "@nzc/prettier-config": "workspace:*",
+    "@nzc/tsconfig": "workspace:*",
+    "@types/bun": "catalog:",
+    "dotenv-cli": "catalog:",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  }
+}
