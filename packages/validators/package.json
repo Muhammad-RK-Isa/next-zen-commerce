@@ -1,0 +1,37 @@
+{
+  "name": "@nzc/validators",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./common": {
+      "types": "./dist/common/index.d.ts",
+      "default": "./src/common/index.ts"
+    },
+    "./app": {
+      "types": "./dist/app/index.d.ts",
+      "default": "./src/app/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "prettier": "@nzc/prettier-config",
+  "dependencies": {
+    "@nzc/db": "workspace:*",
+    "@nzc/env": "workspace:*",
+    "@nzc/ui": "workspace:^",
+    "drizzle-zod": "^0.5.1",
+    "nuqs": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nzc/eslint-config": "workspace:*",
+    "@nzc/prettier-config": "workspace:*",
+    "@nzc/tsconfig": "workspace:*"
+  }
+}
