@@ -1,4 +1,4 @@
-import { cn } from "@nzc/ui";
+import { cn } from "@nzc/ui/utils/cn";
 
 const dots = "mx-[1px] inline-block size-1 animate-blink rounded-full";
 

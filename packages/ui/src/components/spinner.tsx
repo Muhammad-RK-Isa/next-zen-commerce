@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@nzc/ui";
+import { cn } from "@nzc/ui/utils/cn";
 
 interface SpinnerProps {
   containerClassName?: string;

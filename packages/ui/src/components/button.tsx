@@ -3,13 +3,13 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 
-import { cn } from "@nzc/ui";
+import { cn } from "@nzc/ui/utils/cn";
 
 import { LoadingDots } from "./loading-dots";
 import { Spinner } from "./spinner";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[colors,width] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -26,7 +26,7 @@ const buttonVariants = cva(
       },
       size: {
         default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
+        sm: "h-8 gap-1.5 rounded-md px-2.5 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "size-9",
       },
@@ -55,7 +55,7 @@ const Button: React.FC<ButtonProps> = ({
   size = "default",
   asChild = false,
   loading = false,
-  loader = "spinner",
+  loader = "dots",
   icon,
   iconPosition = "left",
   ...props
@@ -79,7 +79,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <Comp
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     >
       {loading ? (

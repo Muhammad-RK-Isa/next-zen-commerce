@@ -6,8 +6,8 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { Controller, FormProvider, useFormContext } from "react-hook-form";
 
-import { cn } from "@nzc/ui";
 import { Label } from "@nzc/ui/components/label";
+import { cn } from "@nzc/ui/utils/cn";
 
 import { Input } from "./input";
 
@@ -108,7 +108,7 @@ const FormInput: React.FC<React.ComponentProps<"input">> = ({
       type={type}
       className={cn(
         error &&
-          "border-destructive hover:border-destructive hover:focus-within:border-destructive focus-visible:border-destructive focus-visible:ring-[1px] focus-visible:ring-destructive",
+          "border-destructive hover:border-destructive hover:focus-within:border-destructive focus-visible:border-destructive focus-visible:ring-destructive",
         className,
       )}
       id={formItemId}
@@ -184,8 +184,8 @@ export {
   FormControl,
   FormDescription,
   FormField,
-  FormItem,
   FormInput,
+  FormItem,
   FormLabel,
   FormMessage,
   useFormField,
