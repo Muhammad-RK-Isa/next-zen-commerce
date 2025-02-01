@@ -1,0 +1,33 @@
+{
+  "name": "@nzc/redis",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "prettier": "@nzc/prettier-config",
+  "dependencies": {
+    "@nzc/env": "workspace:*",
+    "redis": "^4.7.0"
+  },
+  "devDependencies": {
+    "@nzc/eslint-config": "workspace:*",
+    "@nzc/prettier-config": "workspace:*",
+    "@nzc/tsconfig": "workspace:*",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  }
+}
