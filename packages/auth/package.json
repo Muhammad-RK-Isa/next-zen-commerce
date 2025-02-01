@@ -1,0 +1,50 @@
+{
+  "name": "@nzc/auth",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./validate-user-request": {
+      "types": "./dist/validate-user-request.d.ts",
+      "default": "./src/validate-user-request.ts"
+    },
+    "./validate-customer-request": {
+      "types": "./dist/validate-customer-request.d.ts",
+      "default": "./src/validate-customer-request.ts"
+    },
+    "./utils": {
+      "types": "./dist/utils.d.ts",
+      "default": "./src/utils.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
+  },
+  "prettier": "@nzc/prettier-config",
+  "dependencies": {
+    "@nzc/db": "workspace:^",
+    "@nzc/env": "workspace:*",
+    "@nzc/redis": "workspace:^",
+    "@oslojs/crypto": "^1.0.1",
+    "@oslojs/encoding": "^1.1.0",
+    "arctic": "^3.1.0",
+    "oslo": "^1.2.1"
+  },
+  "devDependencies": {
+    "@nzc/eslint-config": "workspace:^",
+    "@nzc/prettier-config": "workspace:*",
+    "@nzc/tsconfig": "workspace:*",
+    "@types/bun": "catalog:",
+    "eslint": "catalog:",
+    "prettier": "catalog:"
+  }
+}
