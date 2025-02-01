@@ -86,14 +86,13 @@ export async function createUserSession({
       userId: user.id,
       isTwoFactorVerified: flags.isTwoFactorVerified,
     }),
-    {
-      EXAT: expiresAt,
-    },
+    "EX",
+    expiresAt,
   );
 
-  await redis.hSet(USER_KEY, user.id, JSON.stringify(user));
+  await redis.hset(USER_KEY, user.id, JSON.stringify(user));
 
-  await redis.sAdd(`user_sessions:${user.id}`, sessionId);
+  await redis.sadd(`user_sessions:${user.id}`, sessionId);
 
   return {
     id: token,
@@ -126,14 +125,13 @@ export async function createCustomerSession({
       userId: customer.id,
       isTwoFactorVerified: flags.isTwoFactorVerified,
     }),
-    {
-      EXAT: expiresAt,
-    },
+    "EX",
+    expiresAt,
   );
 
-  await redis.hSet(CUSTOMER_KEY, customer.id, JSON.stringify(customer));
+  await redis.hset(CUSTOMER_KEY, customer.id, JSON.stringify(customer));
 
-  await redis.sAdd(`customer_sessions:${customer.id}`, sessionId);
+  await redis.sadd(`customer_sessions:${customer.id}`, sessionId);
 
   return {
     id: token,
@@ -196,7 +194,7 @@ async function validateUserSession(token: string) {
 
   const validSessionData = JSON.parse(validSession) as StoredUserSession;
 
-  const user = await redis.hGet(USER_KEY, validSessionData.userId);
+  const user = await redis.hget(USER_KEY, validSessionData.userId);
 
   if (!user) {
     return {
@@ -228,9 +226,8 @@ async function validateUserSession(token: string) {
         expiresAt: renewedExpiryDate,
         isTwoFactorVerified: validSessionData.isTwoFactorVerified,
       }),
-      {
-        EXAT: renewedExpiryDate,
-      },
+      "EX",
+      renewedExpiryDate,
     );
   }
 
@@ -257,7 +254,7 @@ async function validateCustomerSession(token: string) {
 
   const validSessionData = JSON.parse(validSession) as StoredCustomerSession;
 
-  const customer = await redis.hGet(CUSTOMER_KEY, validSessionData.customerId);
+  const customer = await redis.hget(CUSTOMER_KEY, validSessionData.customerId);
 
   if (!customer) {
     return {
@@ -289,9 +286,8 @@ async function validateCustomerSession(token: string) {
         expiresAt: renewedExpiryDate,
         isTwoFactorVerified: validSessionData.isTwoFactorVerified,
       }),
-      {
-        EXAT: renewedExpiryDate,
-      },
+      "EX",
+      renewedExpiryDate,
     );
   }
 
