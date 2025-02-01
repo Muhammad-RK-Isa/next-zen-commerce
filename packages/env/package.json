@@ -1,0 +1,21 @@
+{
+  "name": "@nzc/env",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "prettier": "@nzc/prettier-config",
+  "dependencies": {
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nzc/eslint-config": "workspace:^",
+    "@nzc/prettier-config": "workspace:^",
+    "@nzc/tsconfig": "workspace:^",
+    "@t3-oss/env-core": "^0.11.1",
+    "eslint": "catalog:",
+    "typescript": "catalog:"
+  }
+}
