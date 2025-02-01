@@ -6,6 +6,9 @@ import { fileURLToPath } from "url";
 
 /** @type { PrettierConfig | SortImportsConfig | TailwindConfig } */
 const config = {
+  semi: true,
+  trailingComma: "all",
+  singleQuote: false,
   plugins: [
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss",
@@ -21,7 +24,7 @@ const config = {
     "^(expo(.*)$)|^(expo$)",
     "<THIRD_PARTY_MODULES>",
     "",
-    "<TYPES>^@acme",
+    "<TYPES>^@nzc",
     "^@nzc/(.*)$",
     "",
     "<TYPES>^[.|..|~]",
