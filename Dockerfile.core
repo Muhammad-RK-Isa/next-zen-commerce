@@ -33,5 +33,7 @@ ENV NODE_ENV=production
 ENV SKIP_ENV_VALIDATION=1
 COPY --from=core-builder /app/ .
 WORKDIR /app/apps/core
+ 
+EXPOSE 8000
 
 CMD ["bun", "run", "dist/index.js"]
