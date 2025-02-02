@@ -17,6 +17,7 @@ export const env = createEnv({
     EMAIL_PASSWORD: z.string(),
     UPLOADTHING_TOKEN: z.string(),
     REDIS_URL: z.string().url(),
+    BACKEND_PORT: z.number({ coerce: true }).default(8000),
   },
   clientPrefix: "PUBLIC_",
   client: {
