@@ -34,6 +34,6 @@ ENV SKIP_ENV_VALIDATION=1
 COPY --from=core-builder /app/ .
 WORKDIR /app/apps/core
  
-EXPOSE 8000
+EXPOSE 8080
 
 CMD ["bun", "run", "dist/index.js"]
