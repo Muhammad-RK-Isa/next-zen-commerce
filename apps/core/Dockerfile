@@ -1,0 +1,36 @@
+FROM node:20-alpine AS base
+
+FROM base AS core-pruner
+
+WORKDIR /app
+RUN npm install -g turbo
+COPY . .
+RUN turbo prune --scope="@nzc/core" --docker
+
+FROM base AS core-installer
+
+WORKDIR /app
+COPY --from=core-pruner /app/out/json .
+COPY --from=core-pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=core-pruner /app/turbo.json ./turbo.json
+
+RUN npm install -g pnpm
+RUN pnpm install --frozen-lockfile --prefer-frozen-lockfile
+
+FROM base AS core-builder
+
+WORKDIR /app
+COPY --from=core-installer /app/ .
+COPY --from=core-pruner /app/out/full .
+RUN npm install -g pnpm
+RUN npm install -g bun
+RUN pnpm run build
+
+FROM oven/bun:latest AS runner
+
+WORKDIR /app
+ENV SKIP_ENV_VALIDATION=1
+COPY --from=core-builder /app/ .
+WORKDIR /app/apps/core
+
+CMD ["bun", "run", "dist/index.js"]
