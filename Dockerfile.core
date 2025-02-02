@@ -29,6 +29,7 @@ RUN pnpm run build
 FROM oven/bun:latest AS runner
 
 WORKDIR /app
+ENV NODE_ENV=production
 ENV SKIP_ENV_VALIDATION=1
 COPY --from=core-builder /app/ .
 WORKDIR /app/apps/core
