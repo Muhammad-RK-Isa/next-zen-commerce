@@ -18,7 +18,10 @@ RUN npm install -g pnpm
 RUN pnpm install --frozen-lockfile --prefer-frozen-lockfile
 
 FROM base AS core-builder
-
+ARG TURBO_TEAM 
+ENV TURBO_TEAM=${TURBO_TEAM}
+ARG TURBO_TOKEN
+ENV TURBO_TOKEN=${TURBO_TOKEN}
 WORKDIR /app
 COPY --from=core-installer /app/ .
 COPY --from=core-pruner /app/out/full .
