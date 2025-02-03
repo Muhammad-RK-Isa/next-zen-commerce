@@ -20,9 +20,9 @@ RUN pnpm install --frozen-lockfile --prefer-frozen-lockfile
 FROM base AS builder
 
 ARG TURBO_TEAM 
-ENV TURBO_TEAM=${TURBO_TEAM}
+ENV TURBO_TEAM=$TURBO_TEAM
 ARG TURBO_TOKEN
-ENV TURBO_TOKEN=${TURBO_TOKEN}
+ENV TURBO_TOKEN=$TURBO_TOKEN
 
 WORKDIR /app
 COPY --from=installer /app/ .
