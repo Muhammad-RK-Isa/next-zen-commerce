@@ -1,0 +1,30 @@
+{
+  "name": "@nzc/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "module": "index.ts",
+  "scripts": {
+    "build": "pnpm with-env bun build index.ts --outdir ./dist --target bun",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "pnpm with-env bun --hot index.ts",
+    "start": "pnpm with-env bun run dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@hono/trpc-server": "^0.3.4",
+    "@t3-oss/env-core": "^0.12.0",
+    "hono": "^4.7.4",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nzc/tsconfig": "workspace:*",
+    "@types/bun": "catalog:",
+    "dotenv-cli": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
