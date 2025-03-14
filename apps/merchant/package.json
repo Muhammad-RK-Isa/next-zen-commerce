@@ -4,31 +4,30 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "analyze": "ANALYZE=true pnpm build",
     "build": "pnpm with-env next build",
     "clean": "git clean -xdf .cache .next .turbo node_modules",
     "dev": "pnpm with-env next dev --turbopack --port 7000",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
     "start": "pnpm with-env next start --port 7000",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
     "with-env": "dotenv -e ../../.env -- "
   },
   "dependencies": {
     "@nzc/next-config": "workspace:^",
     "@nzc/ui": "workspace:*",
-    "@t3-oss/env-nextjs": "^0.12.0",
-    "lucide-react": "^0.475.0",
-    "next": "^15.2.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "zod": "^3.24.2"
+    "@t3-oss/env-nextjs": "catalog:",
+    "lucide-react": "catalog:",
+    "next": "catalog:",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@nzc/tsconfig": "workspace:*",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "dotenv-cli": "^8.0.0",
-    "typescript": "^5.7.3"
+    "@types/react": "catalog:react19",
+    "@types/react-dom": "catalog:react19",
+    "dotenv-cli": "catalog:",
+    "typescript": "catalog:"
   }
 }
