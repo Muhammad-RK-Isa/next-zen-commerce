@@ -1,0 +1,18 @@
+{
+  "name": "@nzc/next-config",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@next/bundle-analyzer": "^15.2.2",
+    "@t3-oss/env-nextjs": "^0.12.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@nzc/tsconfig": "workspace:^",
+    "next": "^15.2.0"
+  }
+}
