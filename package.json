@@ -10,7 +10,8 @@
     "format": "ultracite format",
     "lint": "ultracite lint",
     "lint-staged": "lint-staged",
-    "prepare": "husky"
+    "prepare": "husky",
+    "ui:add": "turbo run ui:add"
   },
   "lint-staged": {
     "**/package.json": "sort-package-json",
@@ -20,11 +21,12 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@nzc/tsconfig": "workspace:*",
+    "@types/node": "catalog:",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
     "sort-package-json": "^3.0.0",
     "turbo": "^2.4.4",
-    "typescript": "5.8.2",
+    "typescript": "catalog:",
     "ultracite": "^4.1.21"
   },
   "packageManager": "pnpm@10.4.1",
