@@ -20,6 +20,10 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "db:push": {
+      "cache": false,
+      "interactive": true
     }
   },
   "globalPassThroughEnv": ["NODE_ENV", "npm_lifecycle_event"]

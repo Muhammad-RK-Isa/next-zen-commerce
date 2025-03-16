@@ -6,12 +6,15 @@
     "build": "turbo build",
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo run clean",
+    "db:introspect": "turbo -F @nzc/db introspect",
+    "db:migrate": "turbo -F @nzc/db migrate",
+    "db:push": "turbo -F @nzc/db push",
     "dev": "turbo dev",
     "format": "ultracite format",
     "lint": "ultracite lint",
     "lint-staged": "lint-staged",
     "prepare": "husky",
-    "ui:add": "turbo run ui:add"
+    "ui:add": "turbo -F @nzc/ui add"
   },
   "lint-staged": {
     "**/package.json": "sort-package-json",
