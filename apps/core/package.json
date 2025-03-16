@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@hono/trpc-server": "^0.3.4",
-    "@t3-oss/env-core": "^0.12.0",
+    "@t3-oss/env-core": "catalog:",
     "hono": "^4.7.4",
     "zod": "catalog:"
   },
@@ -23,8 +23,5 @@
     "@types/bun": "catalog:",
     "dotenv-cli": "catalog:",
     "typescript": "catalog:"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
   }
 }
