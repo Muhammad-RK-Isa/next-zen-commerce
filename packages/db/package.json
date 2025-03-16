@@ -1,0 +1,25 @@
+{
+  "name": "@nzc/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "introspect": "pnpm with-env drizzle-kit introspect",
+    "migrate": "pnpm with-env drizzle-kit migrate",
+    "push": "pnpm with-env drizzle-kit push",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@t3-oss/env-core": "catalog:",
+    "drizzle-orm": "^0.40.0",
+    "uuid": "^11.1.0",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nzc/tsconfig": "workspace:*",
+    "@types/uuid": "^10.0.0",
+    "drizzle-kit": "catalog:",
+    "typescript": "catalog:"
+  }
+}
