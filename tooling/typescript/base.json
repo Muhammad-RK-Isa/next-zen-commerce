@@ -2,10 +2,13 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Default",
   "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
-    "incremental": false,
+    "incremental": true,
+    "disableSourceOfProjectReferenceRedirect": true,
     "isolatedModules": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "Preserve",
@@ -19,5 +22,6 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "tsBuildInfoFile": "${configDir}/.cache/tsbuildinfo.json"
-  }
+  },
+  "exclude": ["node_modules", "build", "dist", ".next"]
 }
