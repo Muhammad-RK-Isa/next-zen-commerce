@@ -1,12 +1,8 @@
 {
   "extends": "@nzc/tsconfig/internal-package.json",
   "compilerOptions": {
-    "rootDir": ".",
-    "paths": {
-      "@nzc/db/*": ["./*"],
-      "@nzc/*": ["../../packages/*"]
-    }
+    "rootDir": "."
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }
