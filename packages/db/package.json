@@ -3,12 +3,41 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js",
+      "import": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/types/index.js",
+      "import": "./dist/types/index.js"
+    },
+    "./client": {
+      "types": "./dist/client/index.d.ts",
+      "default": "./dist/client/index.js",
+      "import": "./dist/client/index.js"
+    },
+    "./schema": {
+      "types": "./dist/schema/index.d.ts",
+      "default": "./dist/schema/index.js",
+      "import": "./dist/schema/index.js"
+    },
+    "./utils": {
+      "types": "./dist/utils/index.d.ts",
+      "default": "./dist/utils/index.js",
+      "import": "./dist/utils/index.js"
+    }
+  },
   "scripts": {
+    "build": "tsup",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsup --watch",
     "introspect": "pnpm with-env drizzle-kit introspect",
     "migrate": "pnpm with-env drizzle-kit migrate",
     "push": "pnpm with-env drizzle-kit push",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
     "@t3-oss/env-core": "catalog:",
@@ -20,6 +49,7 @@
     "@nzc/tsconfig": "workspace:*",
     "@types/uuid": "^10.0.0",
     "drizzle-kit": "catalog:",
+    "tsup": "catalog:",
     "typescript": "catalog:"
   }
 }
