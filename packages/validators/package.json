@@ -1,0 +1,27 @@
+{
+  "name": "@nzc/validators",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./common": "./common/index.ts",
+    "./merchant": "./merchant/index.ts"
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@nzc/db": "workspace:^",
+    "drizzle-zod": "^0.7.0",
+    "nuqs": "^2.4.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@nzc/tsconfig": "workspace:*",
+    "tsup": "catalog:",
+    "typescript": "catalog:"
+  }
+}
