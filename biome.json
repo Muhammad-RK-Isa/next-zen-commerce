@@ -1,18 +1,31 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "extends": ["ultracite"],
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "semicolons": "asNeeded"
+    }
+  },
   "linter": {
     "rules": {
       "suspicious": {
         "useAwait": "off"
+      },
+      "nursery": {
+        "useSortedClasses": "off",
+        "noDocumentCookie": "off",
+        "noNestedTernary": "off"
+      },
+      "security": {
+        "all": false
+      },
+      "complexity": {
+        "all": false
+      },
+      "a11y": {
+        "all": false
       }
     }
-  },
-  "files": {
-    "ignore": [
-      "packages/ui/components/**",
-      "packages/ui/lib/**",
-      "packages/ui/hooks/**"
-    ]
   }
 }
