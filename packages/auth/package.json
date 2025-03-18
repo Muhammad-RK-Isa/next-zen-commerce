@@ -1,0 +1,56 @@
+{
+  "name": "@nzc/auth",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./env": {
+      "types": "./dist/env.d.ts",
+      "import": "./dist/env.ts",
+      "default": "./dist/env.ts"
+    },
+    "./oauth": {
+      "types": "./dist/oauth.d.ts",
+      "import": "./dist/oauth.ts",
+      "default": "./dist/oauth.ts"
+    },
+    "./user": {
+      "types": "./dist/user/index.d.ts",
+      "import": "./dist/user/index.ts",
+      "default": "./dist/user/index.ts"
+    },
+    "./user/validate-request": {
+      "types": "./dist/user/validate-request.d.ts",
+      "import": "./dist/user/validate-request.ts",
+      "default": "./dist/user/validate-request.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@nzc/db": "workspace:^",
+    "@nzc/redis": "workspace:^",
+    "@nzc/validators": "workspace:^",
+    "@oslojs/crypto": "^1.0.1",
+    "@oslojs/encoding": "^1.1.0",
+    "@t3-oss/env-core": "catalog:",
+    "@trpc/server": "catalog:",
+    "arctic": "^3.5.0",
+    "oslo": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nzc/tsconfig": "workspace:*",
+    "@types/bun": "catalog:",
+    "bun": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "bun": "catalog:"
+  }
+}
