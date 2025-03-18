@@ -1,4 +1,4 @@
-import { siteConfig } from '~/config/site';
+import { siteConfig } from "~/config/site"
 
 export default function Page() {
   return (
@@ -7,5 +7,5 @@ export default function Page() {
         {siteConfig.name}
       </h1>
     </div>
-  );
+  )
 }

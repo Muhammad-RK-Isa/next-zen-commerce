@@ -1,30 +1,30 @@
-import { stores } from '@nzc/db/schema';
-import { generateId, lifecycleDates } from '@nzc/db/utils';
-import { sql } from 'drizzle-orm';
-import { pgTable } from 'drizzle-orm/pg-core';
+import { sql } from "drizzle-orm"
+import { pgTable } from "drizzle-orm/pg-core"
+import { stores } from "../schema"
+import { generateId, lifecycleDates } from "../utils"
 
-export const products = pgTable('products', (t) => ({
+export const products = pgTable("products", (t) => ({
   id: t
     .text()
     .primaryKey()
-    .$defaultFn(() => generateId({ prefix: 'product' })),
-  title: t.text('title').notNull(),
-  handle: t.text('handle').notNull(),
-  description: t.text('description'),
-  metaDescription: t.text('meta_description'),
-  metaTitle: t.text('meta_title'),
+    .$defaultFn(() => generateId({ prefix: "product" })),
+  title: t.text("title").notNull(),
+  handle: t.text("handle").notNull(),
+  description: t.text("description"),
+  metaDescription: t.text("meta_description"),
+  metaTitle: t.text("meta_title"),
   status: t
-    .varchar('status', {
+    .varchar("status", {
       length: 24,
-      enum: ['published', 'draft', 'archived'],
+      enum: ["published", "draft", "archived"],
     })
     .notNull()
-    .default('draft'),
-  vendor: t.text('vendor'),
-  tags: t.text('tags').array().notNull().default(sql`'{}'::text[]`),
+    .default("draft"),
+  vendor: t.text("vendor"),
+  tags: t.text("tags").array().notNull().default(sql`'{}'::text[]`),
   storeId: t
-    .text('store_id')
+    .text("store_id")
     .notNull()
-    .references(() => stores.id, { onDelete: 'cascade' }),
+    .references(() => stores.id, { onDelete: "cascade" }),
   ...lifecycleDates,
-}));
+}))

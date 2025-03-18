@@ -1,11 +1,11 @@
-import { index, pgTable } from 'drizzle-orm/pg-core';
+import { index, pgTable } from "drizzle-orm/pg-core"
 
-import type { StoreSettings } from '@nzc/db/types';
-import { generateId, generateUniqueSlug, lifecycleDates } from '@nzc/db/utils';
+import type { StoreSettings } from "../types"
+import { generateId, generateUniqueSlug, lifecycleDates } from "../utils"
 
 const defaultSettings: StoreSettings = {
-  currency: 'BDT',
-  timezone: 'Asia/Dhaka',
+  currency: "BDT",
+  timezone: "Asia/Dhaka",
   notifications: {
     email: {
       customers: false,
@@ -23,35 +23,35 @@ const defaultSettings: StoreSettings = {
       promotions: true,
     },
   },
-};
+}
 
 export const stores = pgTable(
-  'stores',
+  "stores",
   (t) => ({
     id: t
-      .text('id')
+      .text("id")
       .primaryKey()
       .notNull()
-      .$defaultFn(() => generateId({ prefix: 'store' })),
-    name: t.text('name').notNull(),
+      .$defaultFn(() => generateId({ prefix: "store" })),
+    name: t.text("name").notNull(),
     handle: t
-      .text('handle')
+      .text("handle")
       .notNull()
       .$defaultFn(() => generateUniqueSlug()),
-    fileId: t.text('file_id'),
+    fileId: t.text("file_id"),
     status: t
-      .varchar('status', {
+      .varchar("status", {
         length: 24,
-        enum: ['active', 'inactive'],
+        enum: ["active", "inactive"],
       })
       .notNull()
-      .default('active'),
+      .default("active"),
     settings: t
-      .json('settings')
+      .json("settings")
       .$type<StoreSettings>()
       .notNull()
       .default(defaultSettings),
     ...lifecycleDates,
   }),
-  (t) => [index('store_file_id_idx').on(t.fileId)]
-);
+  (t) => [index("store_file_id_idx").on(t.fileId)]
+)

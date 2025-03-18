@@ -10,8 +10,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
     "paths": {
-      "~/*": ["./*"],
-      "@nzc/*": ["../../packages/*"]
+      "~/*": ["./*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

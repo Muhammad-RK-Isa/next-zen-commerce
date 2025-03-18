@@ -1,63 +1,63 @@
-import { stores } from '@nzc/db/schema';
-import { generateId, lifecycleDates, lower } from '@nzc/db/utils';
-import { sql } from 'drizzle-orm';
-import { index, pgTable, uniqueIndex } from 'drizzle-orm/pg-core';
+import { sql } from "drizzle-orm"
+import { index, pgTable, uniqueIndex } from "drizzle-orm/pg-core"
+import { stores } from "../schema"
+import { generateId, lifecycleDates, lower } from "../utils"
 
 export const inventoryItems = pgTable(
-  'inventory_items',
+  "inventory_items",
   (t) => ({
     id: t
       .text()
       .primaryKey()
-      .$defaultFn(() => generateId({ prefix: 'inv_item' })),
-    name: t.text('name').notNull(),
-    description: t.text('description'),
-    quantity: t.integer('quantity').notNull(),
-    sku: t.text('sku'),
+      .$defaultFn(() => generateId({ prefix: "inv_item" })),
+    name: t.text("name").notNull(),
+    description: t.text("description"),
+    quantity: t.integer("quantity").notNull(),
+    sku: t.text("sku"),
     storeId: t
       .text()
       .notNull()
-      .references(() => stores.id, { onDelete: 'cascade' }),
-    material: t.text('material'),
-    height: t.real('height'),
-    width: t.real('width'),
-    length: t.real('length'),
-    weight: t.real('weight'),
+      .references(() => stores.id, { onDelete: "cascade" }),
+    material: t.text("material"),
+    height: t.real("height"),
+    width: t.real("width"),
+    length: t.real("length"),
+    weight: t.real("weight"),
     heightUnit: t
-      .varchar('height_unit', {
+      .varchar("height_unit", {
         length: 8,
-        enum: ['cm', 'm', 'ft', 'in'],
+        enum: ["cm", "m", "ft", "in"],
       })
       .notNull()
-      .default('cm'),
+      .default("cm"),
     widthUnit: t
-      .varchar('width_unit', {
+      .varchar("width_unit", {
         length: 8,
-        enum: ['cm', 'm', 'ft', 'in'],
+        enum: ["cm", "m", "ft", "in"],
       })
       .notNull()
-      .default('cm'),
+      .default("cm"),
     lengthUnit: t
-      .varchar('length_unit', {
+      .varchar("length_unit", {
         length: 8,
-        enum: ['cm', 'm', 'ft', 'in'],
+        enum: ["cm", "m", "ft", "in"],
       })
       .notNull()
-      .default('cm'),
+      .default("cm"),
     weightUnit: t
-      .varchar('weight_unit', {
+      .varchar("weight_unit", {
         length: 8,
-        enum: ['g', 'kg', 'oz', 'lb'],
+        enum: ["g", "kg", "oz", "lb"],
       })
       .notNull()
-      .default('g'),
+      .default("g"),
     ...lifecycleDates,
   }),
   (t) => [
-    index('inventory_item_name_idx').on(t.name),
-    index('inventory_item_store_idx').on(t.storeId),
-    uniqueIndex('unique_inventory_item_sku_idx')
+    index("inventory_item_name_idx").on(t.name),
+    index("inventory_item_store_idx").on(t.storeId),
+    uniqueIndex("unique_inventory_item_sku_idx")
       .on(lower(t.sku))
       .where(sql`sku IS NOT NULL`),
   ]
-);
+)

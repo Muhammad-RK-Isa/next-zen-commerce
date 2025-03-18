@@ -12,10 +12,12 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
     "with-env": "dotenv -e ../../.env -- "
   },
+  "prettier": "@nzc/prettier-config",
   "dependencies": {
     "@nzc/next-config": "workspace:^",
     "@nzc/ui": "workspace:*",
     "@t3-oss/env-nextjs": "catalog:",
+    "@tanstack/react-form": "catalog:",
     "lucide-react": "catalog:",
     "next": "catalog:",
     "react": "catalog:react19",
@@ -23,11 +25,13 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@nzc/prettier-config": "workspace:^",
     "@nzc/tsconfig": "workspace:*",
     "@types/node": "^20",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
     "dotenv-cli": "catalog:",
+    "prettier": "catalog:",
     "typescript": "catalog:"
   }
 }

@@ -1,45 +1,45 @@
-import { pgTable } from 'drizzle-orm/pg-core';
+import { pgTable } from "drizzle-orm/pg-core"
 
-import { stores } from '@nzc/db/schema';
-import { users } from '@nzc/db/schema';
-import type { Permission, Resource } from '@nzc/db/types';
-import { generateId, lifecycleDates } from '@nzc/db/utils';
+import { stores } from "../schema"
+import { users } from "../schema"
+import type { Permission, Resource } from "../types"
+import { generateId, lifecycleDates } from "../utils"
 
 const defaultPermissions: Record<Resource, Permission[]> = {
-  product: ['read', 'write'],
-  inventory: ['read', 'write'],
-  order: ['read', 'write'],
-  customer: ['read', 'write'],
-  file: ['read', 'write'],
-  store: ['read'],
-};
+  product: ["read", "write"],
+  inventory: ["read", "write"],
+  order: ["read", "write"],
+  customer: ["read", "write"],
+  file: ["read", "write"],
+  store: ["read"],
+}
 
-export const members = pgTable('members', (t) => ({
+export const members = pgTable("members", (t) => ({
   id: t
-    .text('id')
+    .text("id")
     .primaryKey()
     .notNull()
-    .$defaultFn(() => generateId({ prefix: 'users_stores' })),
+    .$defaultFn(() => generateId({ prefix: "users_stores" })),
   userId: t
-    .text('user_id')
+    .text("user_id")
     .notNull()
-    .references(() => users.id, { onDelete: 'set null' }),
+    .references(() => users.id, { onDelete: "set null" }),
   storeId: t
-    .text('store_id')
+    .text("store_id")
     .notNull()
-    .references(() => stores.id, { onDelete: 'cascade' }),
+    .references(() => stores.id, { onDelete: "cascade" }),
   role: t
-    .varchar('role', {
+    .varchar("role", {
       length: 30,
-      enum: ['owner', 'member'],
+      enum: ["owner", "member"],
     })
     .notNull()
-    .default('owner'),
-  customTag: t.text('custom_tag'),
+    .default("owner"),
+  customTag: t.text("custom_tag"),
   permissions: t
-    .json('permissions')
+    .json("permissions")
     .$type<Record<Resource, Permission[]>>()
     .notNull()
     .default(defaultPermissions),
   ...lifecycleDates,
-}));
+}))

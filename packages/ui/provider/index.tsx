@@ -1,13 +1,13 @@
-'use client';
+"use client"
 
-import { Toaster } from '@nzc/ui/components/sonner';
-import { TooltipProvider } from '@nzc/ui/components/tooltip';
-import type { ThemeProviderProps } from 'next-themes';
-import { ThemeProvider as NextThemeProvider } from 'next-themes';
-import { useMediaQuery } from 'usehooks-ts';
+import { Toaster } from "@nzc/ui/components/sonner"
+import { TooltipProvider } from "@nzc/ui/components/tooltip"
+import type { ThemeProviderProps } from "next-themes"
+import { ThemeProvider as NextThemeProvider } from "next-themes"
+import { useMediaQuery } from "usehooks-ts"
 
 export const UIProvider = ({ children, ...properties }: ThemeProviderProps) => {
-  const isDesktop = useMediaQuery('(min-width: 767px)');
+  const isDesktop = useMediaQuery("(min-width: 767px)")
   return (
     <NextThemeProvider
       attribute="class"
@@ -21,8 +21,8 @@ export const UIProvider = ({ children, ...properties }: ThemeProviderProps) => {
         richColors
         expand={isDesktop}
         visibleToasts={12}
-        position={isDesktop ? 'bottom-right' : 'top-center'}
+        position={isDesktop ? "bottom-right" : "top-center"}
       />
     </NextThemeProvider>
-  );
-};
+  )
+}

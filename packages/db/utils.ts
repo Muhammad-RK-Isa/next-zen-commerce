@@ -5,38 +5,38 @@ import type {
   SQL,
   SelectedFields,
   Table,
-} from 'drizzle-orm';
-import { and, is, not, sql } from 'drizzle-orm';
-import type { AnyPgColumn } from 'drizzle-orm/pg-core';
-import { PgTimestampString, timestamp } from 'drizzle-orm/pg-core';
-import type { SelectResultFields } from 'drizzle-orm/query-builders/select.types';
-import { v1 as uuidv1, v4 as uuidv4 } from 'uuid';
+} from "drizzle-orm"
+import { and, is, not, sql } from "drizzle-orm"
+import type { AnyPgColumn } from "drizzle-orm/pg-core"
+import { PgTimestampString, timestamp } from "drizzle-orm/pg-core"
+import type { SelectResultFields } from "drizzle-orm/query-builders/select.types"
+import { v1 as uuidv1, v4 as uuidv4 } from "uuid"
 
-import type { QueryBuilderOpts } from '@nzc/db/types';
+import type { QueryBuilderOpts } from "./types"
 
 export function generateId({ prefix }: { prefix?: string } = {}) {
-  return `${prefix ? `${prefix}_` : ''}${uuidv4()}`;
+  return `${prefix ? `${prefix}_` : ""}${uuidv4()}`
 }
 
 export function generateOrderId(): string {
-  const timestamp = uuidv1();
-  const randomPart = uuidv4();
+  const timestamp = uuidv1()
+  const randomPart = uuidv4()
 
-  const timestampPart = timestamp.split('-')[0];
-  const randomPartSegment = randomPart.split('-')[1];
+  const timestampPart = timestamp.split("-")[0]
+  const randomPartSegment = randomPart.split("-")[1]
 
-  const orderId = `ORDER-${timestampPart}-${randomPartSegment}`.toUpperCase();
-  return orderId;
+  const orderId = `ORDER-${timestampPart}-${randomPartSegment}`.toUpperCase()
+  return orderId
 }
 
 export function isPostgresError(error: unknown) {
   return (
-    typeof error === 'object' &&
+    typeof error === "object" &&
     error !== null &&
-    'code' in error &&
-    'severity' in error &&
-    'detail' in error
-  );
+    "code" in error &&
+    "severity" in error &&
+    "detail" in error
+  )
 }
 
 /**
@@ -44,78 +44,78 @@ export function isPostgresError(error: unknown) {
  * @returns A unique 8-character slug string with only lowercase letters
  */
 export function generateUniqueSlug() {
-  const uuid = uuidv4();
+  const uuid = uuidv4()
 
-  const uuidWithoutHyphens = uuid.replace(/-/g, '');
+  const uuidWithoutHyphens = uuid.replace(/-/g, "")
 
-  let lettersOnly = '';
+  let lettersOnly = ""
   for (
     let i = 0;
     i < uuidWithoutHyphens.length && lettersOnly.length < 8;
     i++
   ) {
-    const char = uuidWithoutHyphens.charAt(i);
+    const char = uuidWithoutHyphens.charAt(i)
 
-    const num = Number.parseInt(char, 16);
+    const num = Number.parseInt(char, 16)
 
-    const letter = String.fromCharCode(97 + (num % 26));
-    lettersOnly += letter;
+    const letter = String.fromCharCode(97 + (num % 26))
+    lettersOnly += letter
   }
 
-  return lettersOnly.substring(0, 8);
+  return lettersOnly.substring(0, 8)
 }
 
 export function generateExpiryDate(
   amount: number,
-  unit: 'm' | 'h' | 'd' | 'mo' | 'y' = 'm'
+  unit: "m" | "h" | "d" | "mo" | "y" = "m"
 ): Date {
   if (amount <= 0) {
-    throw new Error('Amount must be a positive number.');
+    throw new Error("Amount must be a positive number.")
   }
 
-  const codeExpiryDate = new Date();
+  const codeExpiryDate = new Date()
 
   switch (unit) {
-    case 'h':
-      codeExpiryDate.setHours(codeExpiryDate.getHours() + amount);
-      break;
-    case 'd':
-      codeExpiryDate.setDate(codeExpiryDate.getDate() + amount);
-      break;
-    case 'mo':
-      codeExpiryDate.setMonth(codeExpiryDate.getMonth() + amount);
-      break;
-    case 'y':
-      codeExpiryDate.setFullYear(codeExpiryDate.getFullYear() + amount);
-      break;
+    case "h":
+      codeExpiryDate.setHours(codeExpiryDate.getHours() + amount)
+      break
+    case "d":
+      codeExpiryDate.setDate(codeExpiryDate.getDate() + amount)
+      break
+    case "mo":
+      codeExpiryDate.setMonth(codeExpiryDate.getMonth() + amount)
+      break
+    case "y":
+      codeExpiryDate.setFullYear(codeExpiryDate.getFullYear() + amount)
+      break
     default:
-      codeExpiryDate.setMinutes(codeExpiryDate.getMinutes() + amount);
-      break;
+      codeExpiryDate.setMinutes(codeExpiryDate.getMinutes() + amount)
+      break
   }
-  return codeExpiryDate;
+  return codeExpiryDate
 }
 
 export const lifecycleDates = {
-  createdAt: timestamp('created_at', {
-    mode: 'date',
+  createdAt: timestamp("created_at", {
+    mode: "date",
     withTimezone: true,
   })
     .notNull()
     .defaultNow(),
-  updatedAt: timestamp('updated_at', {
-    mode: 'date',
+  updatedAt: timestamp("updated_at", {
+    mode: "date",
     withTimezone: true,
   })
     .default(sql`null`)
     .$onUpdateFn(() => new Date()),
-  deletedAt: timestamp('deleted_at', {
-    mode: 'date',
+  deletedAt: timestamp("deleted_at", {
+    mode: "date",
     withTimezone: true,
   }),
-};
+}
 
 export function takeFirst<TData>(items: TData[]) {
-  return items.at(0);
+  return items.at(0)
 }
 
 /**
@@ -125,7 +125,7 @@ export function takeFirst<TData>(items: TData[]) {
  * @returns The first item from the array or null.
  */
 export function takeFirstOrNull<TData>(items: TData[]) {
-  return takeFirst(items) ?? null;
+  return takeFirst(items) ?? null
 }
 
 /**
@@ -136,13 +136,13 @@ export function takeFirstOrNull<TData>(items: TData[]) {
  * @throws An error if the array is empty.
  */
 export function takeFirstOrThrow<TData>(items: TData[]) {
-  const first = takeFirst(items);
+  const first = takeFirst(items)
 
   if (!first) {
-    throw new Error('First item not found');
+    throw new Error("First item not found")
   }
 
-  return first;
+  return first
 }
 
 /**
@@ -156,7 +156,7 @@ export function coalesce<TData>(
   value: SQL.Aliased<TData> | SQL<TData>,
   defaultValue: SQL<TData>
 ) {
-  return sql<TData>`coalesce(${value}, ${defaultValue})`;
+  return sql<TData>`coalesce(${value}, ${defaultValue})`
 }
 
 /**
@@ -168,26 +168,26 @@ export function coalesce<TData>(
 export function jsonBuildObject<TFields extends SelectedFields<Column, Table>>(
   shape: TFields
 ) {
-  const chunks: SQL[] = [];
+  const chunks: SQL[] = []
 
   for (const [key, value] of Object.entries(shape)) {
     if (chunks.length > 0) {
-      chunks.push(sql.raw(','));
+      chunks.push(sql.raw(","))
     }
 
-    chunks.push(sql.raw(`'${key}',`));
+    chunks.push(sql.raw(`'${key}',`))
 
     // json_build_object formats to ISO 8601 ...
     if (is(value, PgTimestampString)) {
-      chunks.push(sql`timezone('UTC', ${value})`);
+      chunks.push(sql`timezone('UTC', ${value})`)
     } else {
-      chunks.push(sql`${value}`);
+      chunks.push(sql`${value}`)
     }
   }
 
   return sql<
     SelectResultFields<TFields>
-  >`json_build_object(${sql.join(chunks)})`;
+  >`json_build_object(${sql.join(chunks)})`
 }
 
 /**
@@ -201,18 +201,18 @@ export function jsonAgg<Column extends AnyColumn>(
   column: Column,
   opts?: QueryBuilderOpts
 ) {
-  const orderBy = opts?.orderBy ? sql` order by ${opts.orderBy}` : sql``;
+  const orderBy = opts?.orderBy ? sql` order by ${opts.orderBy}` : sql``
 
   const aggregateFunction = opts?.distinct
     ? sql`json_agg(distinct ${sql`${column}`} ${orderBy})`
-    : sql`json_agg(${sql`${column}`} ${orderBy})`;
+    : sql`json_agg(${sql`${column}`} ${orderBy})`
 
-  const where = opts?.nullish ? sql`true` : sql`${column} is not null`;
+  const where = opts?.nullish ? sql`true` : sql`${column} is not null`
 
-  return coalesce<GetColumnData<Column, 'raw'>[]>(
+  return coalesce<GetColumnData<Column, "raw">[]>(
     sql`${aggregateFunction} filter (where ${where})`,
     sql`'[]'::json`
-  );
+  )
 }
 
 /**
@@ -225,21 +225,21 @@ export function jsonAgg<Column extends AnyColumn>(
 export function jsonAggBuildObject<
   TFields extends SelectedFields<Column, Table>,
   Column extends AnyColumn,
->(shape: TFields, opts?: Omit<QueryBuilderOpts, 'distinct'>) {
+>(shape: TFields, opts?: Omit<QueryBuilderOpts, "distinct">) {
   const nullishWhere = opts?.nullish
     ? sql`true`
     : sql`${sql.join(
         Object.values(shape).map((value) => sql`${value} is not null`),
         sql` and `
-      )}`;
+      )}`
 
-  const orderBy = opts?.orderBy ? sql` order by ${opts.orderBy}` : sql``;
-  const where = opts?.where ? and(opts.where, nullishWhere) : nullishWhere;
+  const orderBy = opts?.orderBy ? sql` order by ${opts.orderBy}` : sql``
+  const where = opts?.where ? and(opts.where, nullishWhere) : nullishWhere
 
   return coalesce<SelectResultFields<TFields>[]>(
     sql`json_agg(${jsonBuildObject(shape)}${orderBy}) filter (where ${where})`,
     sql`'[]'::json`
-  );
+  )
 }
 
 /**
@@ -254,13 +254,13 @@ export function arrayAgg<Column extends AnyColumn>(
   column: Column,
   opts?: QueryBuilderOpts
 ) {
-  const orderBy = opts?.orderBy ? sql` order by ${opts.orderBy}` : sql``;
+  const orderBy = opts?.orderBy ? sql` order by ${opts.orderBy}` : sql``
 
   const aggregateFunction = opts?.distinct
     ? sql`array_agg(distinct ${sql`${column}`} ${orderBy})`
-    : sql`array_agg(${sql`${column}`} ${orderBy})`;
+    : sql`array_agg(${sql`${column}`} ${orderBy})`
 
-  return sql`coalesce(nullif(${aggregateFunction}, '{}'), array[]::${column.dataType}[])`;
+  return sql`coalesce(nullif(${aggregateFunction}, '{}'), array[]::${column.dataType}[])`
 }
 
 /**
@@ -279,22 +279,22 @@ export function arrayAggBuildObject<
       value,
     ]),
     sql`, `
-  )})`;
+  )})`
 
-  const distinctClause = options?.distinct ? sql`distinct ` : sql``;
+  const distinctClause = options?.distinct ? sql`distinct ` : sql``
   const orderByClause = options?.orderBy
     ? sql` order by ${options.orderBy}`
-    : sql``;
+    : sql``
   const whereClause = options?.where
     ? sql` filter (where ${options.where})`
-    : sql``;
+    : sql``
 
   return sql<SelectResultFields<TFields>[]>`
     coalesce(
       array_agg(${distinctClause}${jsonbBuildObject}${orderByClause})${whereClause},
       array[]::jsonb[]
     )
-  `;
+  `
 }
 
 /**
@@ -308,15 +308,15 @@ export function caseWhen<TColumn extends Column>(
   cases: { when: SQL | undefined; then: Column }[],
   elseValue: TColumn
 ) {
-  const chunks: SQL[] = [];
+  const chunks: SQL[] = []
 
   for (const { when, then } of cases) {
-    chunks.push(sql`when ${when} then ${then}`);
+    chunks.push(sql`when ${when} then ${then}`)
   }
 
-  chunks.push(sql`else ${elseValue}`);
+  chunks.push(sql`else ${elseValue}`)
 
-  return sql<TColumn['_']['dataType']>`case ${sql.join(chunks)} end`;
+  return sql<TColumn["_"]["dataType"]>`case ${sql.join(chunks)} end`
 }
 
 /**
@@ -328,13 +328,13 @@ export function caseWhen<TColumn extends Column>(
  */
 export function compose<TColumn extends Column>(
   columns: TColumn[],
-  separator = ''
+  separator = ""
 ) {
-  const chunks = columns.map((column) => sql`${column}::text`);
+  const chunks = columns.map((column) => sql`${column}::text`)
 
   return sql<
-    TColumn['_']['dataType']
-  >`(${sql.join(chunks, sql` || ${separator} || `)})`;
+    TColumn["_"]["dataType"]
+  >`(${sql.join(chunks, sql` || ${separator} || `)})`
 }
 
 /**
@@ -352,7 +352,7 @@ export function isEmpty<TColumn extends AnyColumn>(column: TColumn) {
       when ${column}::text = '{}' then true
       else false
     end
-  `;
+  `
 }
 
 /**
@@ -362,9 +362,9 @@ export function isEmpty<TColumn extends AnyColumn>(column: TColumn) {
  * @returns A SQL expression that evaluates to true if the value is not empty, false otherwise.
  */
 export function isNotEmpty<TColumn extends AnyColumn>(column: TColumn) {
-  return not(isEmpty(column));
+  return not(isEmpty(column))
 }
 
 export function lower(email: AnyPgColumn): SQL {
-  return sql`lower(${email})`;
+  return sql`lower(${email})`
 }

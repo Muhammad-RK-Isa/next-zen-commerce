@@ -1,1 +1,1 @@
-export { default } from '@nzc/ui/postcss.config.mjs';
+export { default } from "@nzc/ui/postcss.config.mjs"
