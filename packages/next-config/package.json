@@ -13,6 +13,9 @@
   },
   "devDependencies": {
     "@nzc/tsconfig": "workspace:^",
-    "next": "^15.2.0"
+    "next": "catalog:"
+  },
+  "peerDependencies": {
+    "next": "catalog:"
   }
 }
