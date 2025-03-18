@@ -24,6 +24,10 @@
     "db:push": {
       "cache": false,
       "interactive": true
+    },
+    "format": {
+      "outputs": [".cache/.prettiercache"],
+      "outputLogs": "new-only"
     }
   },
   "globalPassThroughEnv": ["NODE_ENV", "npm_lifecycle_event"]
