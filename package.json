@@ -19,11 +19,16 @@
   "lint-staged": {
     "**/package.json": "sort-package-json",
     "*.{css,html,md,mdx,yml,json}": "ultracite format",
-    "*.{js,json,jsx,ts,tsx}": ["ultracite format", "ultracite lint"]
+    "*.{js,json,jsx,ts,tsx}": [
+      "prettier --write",
+      "ultracite format",
+      "ultracite lint"
+    ]
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@nzc/tsconfig": "workspace:*",
+    "@turbo/gen": "^2.4.4",
     "@types/node": "catalog:",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
