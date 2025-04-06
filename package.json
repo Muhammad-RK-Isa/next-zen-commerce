@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "next-zen-commerce",
   "private": true,
   "scripts": {
     "build": "turbo run build",
