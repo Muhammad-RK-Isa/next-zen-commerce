@@ -1,0 +1,49 @@
+{
+  "name": "@nzc/storage",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "default": "./src/core.ts"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "default": "./src/client.ts"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "default": "./src/server.ts"
+    },
+    "./utils": {
+      "types": "./dist/utils.d.ts",
+      "default": "./src/utils.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@nzc/auth": "workspace:^",
+    "@nzc/db": "workspace:^",
+    "@nzc/validators": "workspace:^",
+    "@t3-oss/env-core": "catalog:",
+    "@uploadthing/shared": "^7.1.8",
+    "uploadthing": "^7.7.2",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@maxmorozoff/try-catch-tuple": "catalog:",
+    "@maxmorozoff/try-catch-tuple-ts-plugin": "catalog:",
+    "@nzc/tsconfig": "workspace:*",
+    "typescript": "catalog:"
+  }
+}
