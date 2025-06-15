@@ -1,0 +1,38 @@
+{
+  "name": "@nzc/validators",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./common": {
+      "types": "./dist/common/index.d.ts",
+      "default": "./src/common/index.ts"
+    },
+    "./merchant": {
+      "types": "./dist/merchant/index.d.ts",
+      "default": "./src/merchant/index.ts"
+    },
+    "./lib/*": {
+      "types": "./dist/lib/*.d.ts",
+      "default": "./src/lib/*.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@nzc/db": "workspace:^",
+    "@nzc/ui": "workspace:^",
+    "drizzle-zod": "^0.7.1",
+    "nuqs": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nzc/tsconfig": "workspace:*",
+    "@tanstack/react-table": "^8.21.3",
+    "typescript": "catalog:"
+  }
+}
