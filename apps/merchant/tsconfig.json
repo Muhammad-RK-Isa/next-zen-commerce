@@ -1,0 +1,20 @@
+{
+  "extends": "@nzc/tsconfig/react.json",
+  "include": ["src"],
+  "compilerOptions": {
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+    },
+    "plugins": [
+      {
+        "name": "@maxmorozoff/try-catch-tuple-ts-plugin",
+        "transform": "@maxmorozoff/try-catch-tuple-ts-plugin/transformer",
+        "errorLevel": "error",
+        "allowIgnoredError": true,
+        "checkWrappedCalls": true
+      }
+    ]
+  }
+}
