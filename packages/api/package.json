@@ -1,0 +1,42 @@
+{
+  "name": "@nzc/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./merchant": {
+      "types": "./dist/merchant/index.d.ts",
+      "default": "./src/merchant/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@nzc/auth": "workspace:^",
+    "@nzc/db": "workspace:^",
+    "@nzc/email": "workspace:^",
+    "@nzc/redis": "workspace:^",
+    "@nzc/security": "workspace:^",
+    "@nzc/storage": "workspace:^",
+    "@nzc/validators": "workspace:^",
+    "@orpc/openapi": "catalog:",
+    "@orpc/server": "catalog:",
+    "@t3-oss/env-core": "catalog:",
+    "arctic": "catalog:",
+    "date-fns": "^4.1.0",
+    "oslo": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@maxmorozoff/try-catch-tuple": "catalog:",
+    "@maxmorozoff/try-catch-tuple-ts-plugin": "catalog:",
+    "@nzc/tsconfig": "workspace:*",
+    "@nzc/ui": "workspace:^",
+    "ts-patch": "^3.3.0",
+    "typescript": "catalog:"
+  }
+}
