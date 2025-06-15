@@ -1,0 +1,32 @@
+{
+  "name": "core",
+  "scripts": {
+    "build": "pnpm with-env bun build src/index.ts --outdir ./dist --target bun",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "pnpm with-env bun run --hot src/index.ts",
+    "start": "pnpm with-env bun run dist/index.js",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@nzc/api": "workspace:^",
+    "@nzc/auth": "workspace:^",
+    "@nzc/db": "workspace:^",
+    "@nzc/storage": "workspace:^",
+    "@nzc/validators": "workspace:^",
+    "@orpc/openapi": "catalog:",
+    "@orpc/server": "catalog:",
+    "@orpc/zod": "catalog:",
+    "@pilcrowjs/object-parser": "^0.0.4",
+    "@t3-oss/env-core": "catalog:",
+    "hono": "^4.7.5",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@maxmorozoff/try-catch-tuple": "^0.1.2",
+    "@maxmorozoff/try-catch-tuple-ts-plugin": "^0.0.1",
+    "@nzc/tsconfig": "workspace:^",
+    "@types/bun": "catalog:",
+    "dotenv-cli": "catalog:",
+    "typescript": "catalog:"
+  }
+}
