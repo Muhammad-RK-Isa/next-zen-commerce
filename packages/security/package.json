@@ -1,0 +1,28 @@
+{
+  "name": "@nzc/security",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./bun": {
+      "types": "./dist/bun/index.d.ts",
+      "default": "./src/bun/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@arcjet/bun": "^1.0.0-beta.6",
+    "@t3-oss/env-core": "catalog:",
+    "nosecone": "1.0.0-beta.6",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nzc/tsconfig": "workspace:*",
+    "typescript": "catalog:"
+  }
+}
