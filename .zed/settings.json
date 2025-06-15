@@ -1,0 +1,30 @@
+{
+  "show_wrap_guides": true,
+  "wrap_guides": [100],
+  "lsp": {
+    "tailwindcss-language-server": {
+      "settings": {
+        "experimental": {
+          "classRegex": [
+            ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+            ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+            [
+              "<Link[^>]*activeProps={{[^}}]*className: ?['\"]([^'\"]*)['\"][^}}]*}}",
+              "'([^']*)'"
+            ],
+            ["\\b\\w+[cC]lassName\\s*=\\s*[\"']([^\"']*)[\"']"],
+            ["\\b\\w+[cC]lassName\\s*=\\s*`([^`]*)`"],
+            ["[\\w]+[cC]lassName[\"']?\\s*:\\s*[\"']([^\"']*)[\"']"],
+            ["[\\w]+[cC]lassName[\"']?\\s*:\\s*`([^`]*)`"]
+          ]
+        }
+      }
+    }
+  },
+  "file_scan_exclusions": ["**/routeTree.gen.ts"],
+  "formatter": {
+    "language_server": {
+      "name": "biome"
+    }
+  }
+}
