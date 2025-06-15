@@ -1,0 +1,7 @@
+{
+  "extends": "@nzc/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "include": ["**/*.ts"]
+}
