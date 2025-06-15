@@ -2,19 +2,46 @@
   "name": "next-zen-commerce",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "build": "turbo build",
+    "check-types": "turbo run check-types",
+    "clean": "git clean -xdf node_modules",
+    "clean:workspaces": "turbo run clean",
+    "db:introspect": "turbo -F @nzc/db introspect",
+    "db:migrate": "turbo -F @nzc/db migrate",
+    "db:push": "turbo -F @nzc/db push",
+    "dev": "turbo dev --concurrency=20",
+    "format": "ultracite format",
+    "lint": "ultracite lint",
+    "lint-staged": "lint-staged",
+    "prepare": "husky",
+    "refresh": "pnpm clean:workspaces && pnpm clean && pnpm i",
+    "sherif": "pnpm dlx sherif@latest",
+    "ui:add": "turbo -F @nzc/ui add"
+  },
+  "lint-staged": {
+    "**/package.json": "sort-package-json",
+    "*.{css,html,md,mdx,yml,json}": "ultracite format",
+    "*.{js,json,jsx,ts,tsx}": [
+      "prettier --write",
+      "ultracite format",
+      "ultracite lint"
+    ]
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@turbo/gen": "^2.5.0",
+    "@types/node": "catalog:",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
+    "sort-package-json": "^3.0.0",
     "turbo": "^2.5.0",
-    "typescript": "5.8.2"
+    "typescript": "catalog:",
+    "ultracite": "^4.2.4"
   },
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@10.10.0",
   "engines": {
-    "node": ">=18"
+    "bun": "^1.2.9",
+    "node": ">=20"
   }
 }
