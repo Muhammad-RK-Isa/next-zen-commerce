@@ -1,3 +1,32 @@
 packages:
   - "apps/*"
   - "packages/*"
+  - "tooling/*"
+
+catalog:
+  "@types/node": ^22.13.10
+  "@types/bun": ^1.2.10
+  sonner: ^2.0.3
+  prettier: ^3.5.3
+  nuqs: ^2.4.3
+  oslo: ^1.2.1
+  arctic: ^3.6.0
+  zod: ^3.24.4
+  tailwindcss: ^4.1.4
+  typescript: ^5.8.3
+  "dotenv-cli": ^8.0.0
+  "drizzle-kit": ^0.31.1
+  "react-hook-form": ^7.56.1
+  "@orpc/openapi": ^1.2.0
+  "@orpc/server": ^1.2.0
+  "@orpc/zod": ^1.2.0
+  "@t3-oss/env-core": ^0.13.4
+  "@maxmorozoff/try-catch-tuple": ^0.1.2
+  "@maxmorozoff/try-catch-tuple-ts-plugin": ^0.0.1
+
+catalogs:
+  react19:
+    react: ^19.1.0
+    react-dom: ^19.1.0
+    "@types/react": ^19.1.2
+    "@types/react-dom": ^19.1.2
