@@ -1,0 +1,60 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "extends": ["ultracite"],
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "semicolons": "asNeeded"
+    }
+  },
+  "linter": {
+    "rules": {
+      "correctness": {
+        "useExhaustiveDependencies": "off"
+      },
+      "suspicious": {
+        "useAwait": "off"
+      },
+      "nursery": {
+        "useSortedClasses": "off",
+        "noDocumentCookie": "off",
+        "noNestedTernary": "off",
+        "useAriaPropsSupportedByRole": "off"
+      },
+      "security": {
+        "all": false
+      },
+      "complexity": {
+        "all": false
+      },
+      "a11y": {
+        "all": false
+      }
+    }
+  },
+  "files": {
+    "ignore": ["**/routeTree.gen.ts"]
+  },
+  "overrides": [
+    {
+      "include": ["apps/merchant/src/**/_*"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useFilenamingConvention": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["apps/core/src/**"],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "noHeadElement": "off"
+          }
+        }
+      }
+    }
+  ]
+}
