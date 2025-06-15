@@ -1,0 +1,17 @@
+{
+  "name": "db-studio",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "pnpm with-env drizzle-kit studio --config=../../packages/db/drizzle.config.ts",
+    "typecheck": "tsc --noEmit",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "devDependencies": {
+    "@nzc/tsconfig": "workspace:*",
+    "dotenv-cli": "catalog:",
+    "drizzle-kit": "catalog:",
+    "typescript": "catalog:"
+  }
+}
