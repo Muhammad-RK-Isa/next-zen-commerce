@@ -34,6 +34,6 @@ WORKDIR /app/apps/merchant
 COPY --from=builder /app/.env ../../.env
 RUN npm install -g pnpm
 
-EXPOSE 8000
+EXPOSE 8080
 
 CMD ["pnpm", "vite", "preview", "--port", "8000"]
