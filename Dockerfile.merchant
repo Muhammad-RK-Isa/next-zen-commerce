@@ -22,7 +22,6 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=installer /app/ .
 COPY --from=pruner /app/out/full .
-COPY .env .env
 RUN npm install -g pnpm
 RUN pnpm run build --filter=merchant
 
