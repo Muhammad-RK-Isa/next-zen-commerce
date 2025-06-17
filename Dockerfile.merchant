@@ -34,4 +34,4 @@ RUN npm install -g pnpm
 
 EXPOSE 8080
 
-CMD ["pnpm", "vite", "preview", "--port", "8080"]
+CMD ["pnpm", "vite", "preview", "--port", "8080", "--host", "0.0.0.0"]
