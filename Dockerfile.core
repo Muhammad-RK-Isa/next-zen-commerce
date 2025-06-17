@@ -1,27 +1,53 @@
 FROM node:20-alpine AS base
 
-FROM base AS pruner
-
+# Prune for core app
+FROM base AS core-pruner
 WORKDIR /app
 RUN npm install -g turbo
 COPY . .
 RUN turbo prune --scope="core" --docker
 
-FROM base AS installer
-
+# Prune for merchant app
+FROM base AS merchant-pruner
 WORKDIR /app
-COPY --from=pruner /app/out/json .
-COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
-COPY --from=pruner /app/turbo.json ./turbo.json
+RUN npm install -g turbo
+COPY . .
+RUN turbo prune --scope="merchant" --docker
 
+# Install dependencies for core app
+FROM base AS core-installer
+WORKDIR /app
+COPY --from=core-pruner /app/out/json .
+COPY --from=core-pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=core-pruner /app/turbo.json ./turbo.json
 RUN npm install -g pnpm
 RUN pnpm install --no-frozen-lockfile
 
-FROM base AS builder
-
+# Install dependencies for merchant app
+FROM base AS merchant-installer
 WORKDIR /app
-COPY --from=installer /app/ .
-COPY --from=pruner /app/out/full .
+COPY --from=merchant-pruner /app/out/json .
+COPY --from=merchant-pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=merchant-pruner /app/turbo.json ./turbo.json
+RUN npm install -g pnpm
+RUN pnpm install --no-frozen-lockfile
+
+# Build merchant app
+FROM base AS merchant-builder
+WORKDIR /app
+COPY --from=merchant-installer /app/ .
+COPY --from=merchant-pruner /app/out/full .
+RUN npm install -g pnpm
+WORKDIR /app/apps/merchant
+RUN pnpm run build
+
+# Build core app
+FROM base AS core-builder
+WORKDIR /app
+COPY --from=core-installer /app/ .
+COPY --from=core-pruner /app/out/full .
+# Copy merchant build output to core's static directory
+COPY --from=merchant-builder /app/apps/core/dist/static ./apps/core/dist/static
 RUN npm install -g pnpm
 RUN npm install -g bun
 RUN pnpm run build
@@ -29,7 +55,7 @@ RUN pnpm run build
 FROM oven/bun:latest AS runner
 
 WORKDIR /app
-COPY --from=builder /app/ .
+COPY --from=core-builder /app/ .
 WORKDIR /app/apps/core
 
 EXPOSE 8000

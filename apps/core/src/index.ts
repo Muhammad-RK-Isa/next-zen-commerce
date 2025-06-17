@@ -8,6 +8,7 @@ import { StrictGetMethodPlugin } from "@orpc/server/plugins"
 import { ZodSmartCoercionPlugin, ZodToJsonSchemaConverter } from "@orpc/zod"
 import * as Bun from "bun"
 import { Hono } from "hono"
+import { serveStatic } from "hono/bun"
 import { cors } from "hono/cors"
 import { logger } from "hono/logger"
 import { env } from "~/env"
@@ -18,10 +19,6 @@ const app = new Hono()
 app.use(logger())
 
 app.use(cors())
-
-app.get("/", (c) => {
-  return c.text("Hello Hono!")
-})
 
 app.all("/api/uploader", (c) => uploadHandlers(c.req.raw))
 
@@ -127,6 +124,9 @@ app.use("/spec.json", async (c) => {
 
   return c.text(JSON.stringify(spec))
 })
+
+app.get("*", serveStatic({ root: "./dist/static" }))
+app.get("*", serveStatic({ path: "./dist/static/index.html" }))
 
 const server = Bun.serve({
   fetch: app.fetch,

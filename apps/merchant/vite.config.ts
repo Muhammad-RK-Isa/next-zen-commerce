@@ -18,6 +18,10 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    outDir: "../core/dist/static",
+    emptyOutDir: true,
+  },
   resolve: {
     alias: {
       "~": resolve(__dirname, "./src"),
@@ -34,14 +38,5 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
-  },
-  preview: {
-    host: true,
-    port: 8080,
-    cors: true,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
-    allowedHosts: ["nzc.muhammadisa.com"],
   },
 })
