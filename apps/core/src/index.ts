@@ -130,8 +130,8 @@ app.get("*", serveStatic({ path: "./dist/static/index.html" }))
 
 const server = Bun.serve({
   fetch: app.fetch,
-  port: 8000,
-  development: process.env.NODE_ENV === "development",
+  port: env.CORE_PORT,
+  development: env.NODE_ENV === "development",
   hostname: "0.0.0.0",
 })
 

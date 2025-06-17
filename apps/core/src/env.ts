@@ -7,6 +7,7 @@ export const env = createEnv({
       .enum(["development", "production", "test"])
       .default("development"),
     CORE_URL: z.string().url(),
+    CORE_PORT: z.number({ coerce: true }),
     MERCHANT_URL: z.string().url(),
   },
   runtimeEnv: process.env,
