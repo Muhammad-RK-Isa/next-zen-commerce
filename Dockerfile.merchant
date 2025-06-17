@@ -31,9 +31,8 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 COPY --from=builder /app/ .
 WORKDIR /app/apps/merchant
-COPY --from=builder /app/.env ../../.env
 RUN npm install -g pnpm
 
 EXPOSE 8080
 
-CMD ["pnpm", "vite", "preview", "--port", "8000"]
+CMD ["pnpm", "vite", "preview", "--port", "8080"]
