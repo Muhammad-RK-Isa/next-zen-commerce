@@ -35,4 +35,12 @@ export default defineConfig({
       },
     },
   },
+  preview: {
+    host: true,
+    port: 8080,
+    cors: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  },
 })
