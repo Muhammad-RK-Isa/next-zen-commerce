@@ -25,15 +25,11 @@ COPY --from=pruner /app/out/full .
 RUN npm install -g pnpm
 RUN pnpm run build --filter=merchant
 
-FROM node:20-alpine AS runner
+FROM base AS runner
 
 WORKDIR /app
-COPY --from=builder /app/apps/merchant/dist ./dist
-RUN npm install -g serve
-
-EXPOSE 8080
-
-CMD ["serve", "-s", "dist",WORKDIR /app/apps/merchant
+COPY --from=builder /app/ .
+WORKDIR /app/apps/merchant
 RUN npm install -g pnpm
 
 EXPOSE 8080
