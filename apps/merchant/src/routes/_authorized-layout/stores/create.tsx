@@ -55,12 +55,7 @@ function RouteComponent() {
   const { mutate: createStore, isPending } = useMutation(
     orpc.store.create.mutationOptions({
       onSuccess: async () => {
-        await queryClient.refetchQueries({
-          queryKey: orpc.store.hasStore.key(),
-        })
-        await queryClient.invalidateQueries({
-          queryKey: orpc.store.list.key(),
-        })
+        await queryClient.refetchQueries()
         await navigate({
           to: redirectPath,
         })

@@ -48,7 +48,7 @@ export const Image = ({ layout = "constrained", ...props }: ImageProps) => (
     {...props}
     transformer={(url, operations, _) =>
       transform(url, operations, {
-        baseUrl: "http://localhost:3000",
+        baseUrl: import.meta.env.VITE_IMAGE_OPTIMIZATION_SERVER_URL,
       })
     }
     layout="constrained"

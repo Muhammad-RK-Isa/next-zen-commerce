@@ -79,7 +79,7 @@ function RouteComponent() {
       { id: store.id },
       {
         onSuccess: async () => {
-          await queryClient.invalidateQueries()
+          await queryClient.refetchQueries()
           await navigate({ to: "/overview" })
         },
       }
